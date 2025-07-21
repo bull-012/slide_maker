@@ -26,7 +26,7 @@ jobs:
       
     - name: Build for web
       run: |
-        flutter build web --base-href "/slide_maker/pr-${{ github.event.number }}/" --web-renderer html
+        flutter build web --base-href "/slide_maker/pr-${{ github.event.number }}/"
         
     - name: Deploy to PR preview
       uses: peaceiris/actions-gh-pages@v3
