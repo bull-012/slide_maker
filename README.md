@@ -254,7 +254,7 @@ lib/
 このプロジェクトはGitHub Actionsによる自動デプロイが設定されています：
 
 #### GitHub Pages自動デプロイ
-- `main` または `master` ブランチにpushすると自動でGitHub Pagesにデプロイ
+- `main` ブランチにpushすると自動でGitHub Pagesにデプロイ
 - GitHub Pagesは https://username.github.io/slide_maker/ でアクセス可能
 - ビルド、テスト、デプロイが自動実行
 
