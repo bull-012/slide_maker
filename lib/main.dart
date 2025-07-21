@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'slide_builder.dart';
-import 'figma_ai_presentation_config.dart';
+import 'presentation_selector.dart';
 
 void main() {
-  runApp(const PresentationApp());
+  runApp(const SlideApp());
 }
 
-class PresentationApp extends StatelessWidget {
-  const PresentationApp({super.key});
+class SlideApp extends StatelessWidget {
+  const SlideApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Figma AIフレンドリー設計のプレゼンテーション
-    return SlideApp.createApp(
-      config: FigmaAIPresentationConfig.presentation,
-      themeMode: ThemeMode.dark,
-    );
+    // 発表資料選択画面を表示
+    return const PresentationSelector();
   }
 }

@@ -32,42 +32,55 @@ flutter run -d web-server --web-port 8080
 
 ### 基本的な使い方
 
-`lib/main.dart` で設定を選択してアプリを起動します：
+アプリを起動すると発表資料選択画面が表示されます：
 
-```dart
-return SlideApp.createApp(
-  config: DefaultSlideConfig.presentation, // または CustomSlideConfig.techPresentation
-  themeMode: ThemeMode.dark,
-);
+```bash
+flutter run -d web-server --web-port 8080
 ```
 
-### カスタムスライドの作成
+選択画面で利用可能な発表資料から選んでタップして発表を開始できます。
 
-#### 1. 設定を使用した作成
+### 新しい発表資料の追加
 
-`lib/slide_config.dart` に新しい設定を追加：
+新しい発表資料を追加するには以下の手順に従ってください：
+
+#### 1. 発表資料設定ファイルの作成
+
+`lib/presentations/` フォルダに新しいファイルを作成：
 
 ```dart
-static const SlideConfig myPresentation = SlideConfig(
-  title: 'マイプレゼンテーション',
-  subtitle: '説明',
-  author: '発表者名',
-  date: '2025年07月21日',
-  slides: [
-    SlideData(
-      route: '/title',
-      title: 'タイトル',
-      type: SlideType.title,
-      content: {
-        'title': 'マイプレゼンテーション',
-        'subtitle': '説明',
-        'author': '発表者名',
-        'date': '2025年07月21日',
-      },
-    ),
-    // 他のスライドを追加...
-  ],
-);
+// lib/presentations/my_presentation_config.dart
+import '../slide_config.dart';
+
+class MyPresentationConfig {
+  static const SlideConfig presentation = SlideConfig(
+    title: 'マイプレゼンテーション',
+    subtitle: '説明',
+    author: '発表者名',
+    date: '2025年07月21日',
+    slides: [
+      // スライドを定義...
+    ],
+  );
+}
+```
+
+#### 2. レジストリへの登録
+
+`lib/presentations/presentation_registry.dart` でインポートと登録：
+
+```dart
+import 'my_presentation_config.dart';
+
+static const List<PresentationItem> presentations = [
+  // 既存の発表資料...
+  PresentationItem(
+    id: 'my-presentation',
+    title: 'マイプレゼンテーション',
+    description: 'プレゼンテーションの説明',
+    config: MyPresentationConfig.presentation,
+  ),
+];
 ```
 
 #### 2. ヘルパー関数を使用した作成
@@ -210,11 +223,22 @@ SlideData(
 
 ```
 lib/
-├── main.dart              # アプリケーションのエントリーポイント
-├── slide_templates.dart   # 再利用可能なスライドテンプレート
-├── slide_config.dart      # スライド設定とデータクラス
-└── slide_builder.dart     # スライド生成とヘルパー関数
+├── main.dart                      # アプリケーションのエントリーポイント
+├── presentation_selector.dart     # 発表資料選択画面
+├── slide_templates.dart           # 再利用可能なスライドテンプレート
+├── slide_config.dart             # スライド設定とデータクラス
+├── slide_builder.dart            # スライド生成とヘルパー関数
+└── presentations/                # 発表資料管理フォルダ
+    ├── presentation_registry.dart    # 発表資料レジストリ
+    ├── default_slide_config.dart     # デフォルト発表資料
+    └── figma_ai_presentation_config.dart # Figma AI設計発表資料
 ```
+
+### 発表資料の管理
+
+- `presentations/` フォルダに各発表資料を配置
+- `presentation_registry.dart` で発表資料を登録
+- 起動時に選択画面で発表資料を選択
 
 ## 開発のヒント
 

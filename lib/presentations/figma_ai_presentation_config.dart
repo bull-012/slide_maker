@@ -1,5 +1,4 @@
-import 'slide_config.dart';
-import 'slide_builder.dart';
+import '../slide_config.dart';
 
 /// Figma AI フレンドリー設計のプレゼンテーション設定
 class FigmaAIPresentationConfig {
