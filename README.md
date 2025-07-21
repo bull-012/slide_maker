@@ -249,17 +249,30 @@ lib/
 
 ## ビルドとデプロイ
 
-### Webアプリとしてビルド
+### 自動デプロイ（推奨）
+
+このプロジェクトはGitHub Actionsによる自動デプロイが設定されています：
+
+#### GitHub Pages自動デプロイ
+- `main` または `master` ブランチにpushすると自動でGitHub Pagesにデプロイ
+- GitHub Pagesは https://username.github.io/slide_maker/ でアクセス可能
+- ビルド、テスト、デプロイが自動実行
+
+#### PR Preview機能
+- Pull Requestを作成すると自動でプレビューサイトを生成
+- https://username.github.io/slide_maker/pr-{番号}/ でプレビュー確認可能
+- PRがクローズされると自動でプレビューサイトを削除
+
+### 手動デプロイ
+
+必要に応じて手動でビルド・デプロイも可能：
 
 ```bash
-flutter build web
-```
+# Webアプリとしてビルド
+flutter build web --base-href "/slide_maker/"
 
-### GitHub Pages へのデプロイ
-
-```bash
-flutter build web --base-href "/リポジトリ名/"
-# build/web/ の内容を GitHub Pages にアップロード
+# GitHub CLI使用の場合（推奨）
+gh workflow run deploy.yml
 ```
 
 ### デスクトップアプリとしてビルド

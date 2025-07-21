@@ -1,0 +1,11 @@
+# Global owner for all files
+* @yutaasada
+
+# Presentation files should be reviewed by presentation authors
+/lib/presentations/ @yutaasada
+
+# GitHub Actions workflows
+/.github/ @yutaasada
+
+# Documentation
+*.md @yutaasada

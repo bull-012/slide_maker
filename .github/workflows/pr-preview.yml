@@ -1,0 +1,67 @@
+name: PR Preview Deploy
+
+on:
+  pull_request:
+    branches: [ main, master ]
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  build-and-preview:
+    runs-on: ubuntu-latest
+    if: github.event.action != 'closed'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Install dependencies
+      run: flutter pub get
+      
+    - name: Build for web
+      run: |
+        flutter build web --base-href "/slide_maker/pr-${{ github.event.number }}/" --web-renderer html
+        
+    - name: Deploy to PR preview
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/web
+        destination_dir: pr-${{ github.event.number }}
+        
+    - name: Comment PR
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 Preview deployed to: https://${{ github.repository_owner }}.github.io/slide_maker/pr-${{ github.event.number }}/'
+          })
+
+  cleanup-preview:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'closed'
+    
+    steps:
+    - name: Checkout gh-pages
+      uses: actions/checkout@v4
+      with:
+        ref: gh-pages
+        
+    - name: Remove preview directory
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        if [ -d "pr-${{ github.event.number }}" ]; then
+          git rm -r pr-${{ github.event.number }}
+          git commit -m "Remove preview for PR #${{ github.event.number }}"
+          git push
+        fi
