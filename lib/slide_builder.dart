@@ -109,12 +109,33 @@ class SlideApp {
     ThemeMode themeMode = ThemeMode.dark,
     FlutterDeckThemeData? darkTheme,
     FlutterDeckThemeData? lightTheme,
+    VoidCallback? onBackPressed,
   }) {
+    final List<FlutterDeckSlideWidget> slides = SlideBuilder.buildSlides(config);
+    
+    // 戻るボタン付きのスライドを作成
+    if (onBackPressed != null) {
+      for (int i = 0; i < slides.length; i++) {
+        slides[i] = _wrapSlideWithBackButton(slides[i], onBackPressed);
+      }
+    }
+    
     return FlutterDeckApp(
       themeMode: themeMode,
       darkTheme: darkTheme ?? _getDefaultDarkTheme(),
       lightTheme: lightTheme ?? _getDefaultLightTheme(),
-      slides: SlideBuilder.buildSlides(config),
+      slides: slides,
+    );
+  }
+
+  /// スライドに戻るボタンを追加
+  static FlutterDeckSlideWidget _wrapSlideWithBackButton(
+    FlutterDeckSlideWidget slide,
+    VoidCallback onBackPressed,
+  ) {
+    return _SlideWithBackButton(
+      originalSlide: slide,
+      onBackPressed: onBackPressed,
     );
   }
 
@@ -235,6 +256,47 @@ class SlideHelper {
         if (subtitle != null) 'subtitle': subtitle,
         if (description != null) 'description': description,
       },
+    );
+  }
+}
+
+/// 戻るボタン付きスライドラッパー
+class _SlideWithBackButton extends FlutterDeckSlideWidget {
+  final FlutterDeckSlideWidget originalSlide;
+  final VoidCallback onBackPressed;
+
+  _SlideWithBackButton({
+    required this.originalSlide,
+    required this.onBackPressed,
+  }) : super(
+          configuration: originalSlide.configuration,
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // 元のスライド
+        originalSlide.build(context),
+        
+        // 戻るボタン
+        Positioned(
+          top: 16,
+          left: 16,
+          child: SafeArea(
+            child: IconButton(
+              onPressed: onBackPressed,
+              icon: const Icon(Icons.home),
+              tooltip: '発表資料選択に戻る',
+              style: IconButton.styleFrom(
+                backgroundColor: Colors.black.withValues(alpha: 0.3),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.all(12),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

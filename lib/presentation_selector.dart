@@ -94,6 +94,13 @@ class PresentationSelectionScreen extends StatelessWidget {
           builder: (context) => SlideApp.createApp(
             config: config,
             themeMode: ThemeMode.dark,
+            onBackPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const PresentationSelector(),
+                ),
+              );
+            },
           ),
         ),
       );

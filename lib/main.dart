@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'presentation_selector.dart';
 
 void main() {
-  runApp(const SlideApp());
+  runApp(const SlideMakerApp());
 }
 
-class SlideApp extends StatelessWidget {
-  const SlideApp({super.key});
+class SlideMakerApp extends StatelessWidget {
+  const SlideMakerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
