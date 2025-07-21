@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'slide_builder.dart';
-import 'slide_config.dart';
+import 'figma_ai_presentation_config.dart';
 
 void main() {
   runApp(const PresentationApp());
@@ -11,10 +11,9 @@ class PresentationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ここで使用する設定を選択できます
-    // DefaultSlideConfig.presentation または CustomSlideConfig.techPresentation
+    // Figma AIフレンドリー設計のプレゼンテーション
     return SlideApp.createApp(
-      config: DefaultSlideConfig.presentation,
+      config: FigmaAIPresentationConfig.presentation,
       themeMode: ThemeMode.dark,
     );
   }
