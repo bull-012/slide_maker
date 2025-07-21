@@ -16,7 +16,7 @@ class TitleSlideTemplate extends SlideTemplate {
   final String? author;
   final String? date;
 
-  const TitleSlideTemplate({
+  TitleSlideTemplate({
     super.key,
     required String route,
     required this.title,
@@ -82,7 +82,7 @@ class BulletSlideTemplate extends SlideTemplate {
   final double? titleFontSize;
   final double? bulletFontSize;
 
-  const BulletSlideTemplate({
+  BulletSlideTemplate({
     super.key,
     required String route,
     required String slideTitle,
@@ -133,7 +133,7 @@ class NumberedListSlideTemplate extends SlideTemplate {
   final double? titleFontSize;
   final double? itemFontSize;
 
-  const NumberedListSlideTemplate({
+  NumberedListSlideTemplate({
     super.key,
     required String route,
     required String slideTitle,
@@ -186,7 +186,7 @@ class ContentSlideTemplate extends SlideTemplate {
   final double? contentFontSize;
   final double? bulletFontSize;
 
-  const ContentSlideTemplate({
+  ContentSlideTemplate({
     super.key,
     required String route,
     required String slideTitle,
@@ -248,7 +248,7 @@ class CenterSlideTemplate extends SlideTemplate {
   final double? subtitleFontSize;
   final double? descriptionFontSize;
 
-  const CenterSlideTemplate({
+  CenterSlideTemplate({
     super.key,
     required String route,
     required String slideTitle,
