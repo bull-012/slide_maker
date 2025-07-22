@@ -19,9 +19,9 @@ class PresentationRegistry {
       config: CustomSlideConfig.techPresentation,
     ),
     PresentationItem(
-      id: 'figma-ai',
-      title: 'AIフレンドリーなFigma設計',
-      description: 'Flutter & React両対応のデザインシステム構築',
+      id: 'figma-flutter',
+      title: 'Figma×Flutter連携ガイド',
+      description: 'デザインがそのままアプリになる実用的な手法',
       config: FigmaAIPresentationConfig.presentation,
     ),
   ];

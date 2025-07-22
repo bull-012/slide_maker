@@ -3,8 +3,8 @@ import '../slide_config.dart';
 /// Figma AI フレンドリー設計のプレゼンテーション設定
 class FigmaAIPresentationConfig {
   static const SlideConfig presentation = SlideConfig(
-    title: 'デザイナーの作業がそのままコードになる方法',
-    subtitle: 'Figmaからアプリまで、一緒に作るデザインシステム',
+    title: 'FigmaのデザインがそのままFlutterアプリになる方法',
+    subtitle: '今すぐ使える実用的なデザインシステム構築',
     author: 'エンジニアからデザイナーへ',
     date: '2025年07月22日',
     slides: [
@@ -14,8 +14,8 @@ class FigmaAIPresentationConfig {
         title: 'タイトル',
         type: SlideType.title,
         content: {
-          'title': 'デザイナーの作業が\nそのままコードになる方法',
-          'subtitle': 'Figmaからアプリまで、一緒に作るデザインシステム',
+          'title': 'Figmaのデザインが\nそのままFlutterアプリになる方法',
+          'subtitle': '今すぐ使える実用的なデザインシステム構築',
           'author': 'エンジニアからデザイナーへ',
           'date': '2025年07月22日',
         },
@@ -45,7 +45,7 @@ class FigmaAIPresentationConfig {
         type: SlideType.center,
         content: {
           'title': 'あなたがFigmaで作ったデザインが',
-          'subtitle': 'そのままアプリになる',
+          'subtitle': 'そのままFlutterアプリになる',
           'description': 'コンポーネントも、色も、サイズも、全てが連動する世界',
         },
       ),
@@ -56,12 +56,12 @@ class FigmaAIPresentationConfig {
         title: 'そのために必要なこと',
         type: SlideType.numberedList,
         content: {
-          'title': 'デザイナーの作業をコードにつなげるために',
+          'title': 'Flutter開発でデザインを正確に再現するために',
           'items': [
-            'Figmaのコンポーネントを開発でも理解できる構造に',
-            '色やサイズを「変数」として作ってもらう',
-            'レイヤーに意味のある名前をつけてもらう',
-            'Figmaで作った通りに動くコンポーネントを作る',
+            'Figmaのコンポーネント構造をFlutterで理解しやすくする',
+            '色・サイズ・間隔を変数で管理して一元化する',
+            'レイヤー名でエンジニアが作るべきWidgetを明確にする',
+            'Code Connect対応で将来の自動生成に備える',
           ],
         },
       ),
