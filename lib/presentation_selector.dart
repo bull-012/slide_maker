@@ -89,19 +89,28 @@ class PresentationSelectionScreen extends StatelessWidget {
   void _startPresentation(BuildContext context, String presentationId) {
     final config = PresentationRegistry.getPresentation(presentationId);
     if (config != null) {
+      // FlutterDeckはMaterialAppのルートで実行される必要がある
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => SlideApp.createApp(
-            config: config,
-            themeMode: ThemeMode.dark,
-            onBackPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const PresentationSelector(),
-                ),
-              );
-            },
-          ),
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return SlideApp.createApp(
+              config: config,
+              themeMode: ThemeMode.dark,
+              onBackPressed: () {
+                Navigator.of(context).pushReplacement(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return const PresentationSelector();
+                    },
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ),
+                );
+              },
+            );
+          },
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
         ),
       );
     }

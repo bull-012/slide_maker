@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'presentation_selector.dart';
 
 void main() {
@@ -10,7 +11,11 @@ class SlideMakerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 発表資料選択画面を表示
-    return const PresentationSelector();
+    return MaterialApp(
+      title: 'スライド発表資料',
+      theme: ThemeData.dark(),
+      home: const PresentationSelector(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

@@ -125,6 +125,19 @@ class SlideApp {
       darkTheme: darkTheme ?? _getDefaultDarkTheme(),
       lightTheme: lightTheme ?? _getDefaultLightTheme(),
       slides: slides,
+      configuration: const FlutterDeckConfiguration(
+        background: FlutterDeckBackgroundConfiguration(
+          dark: FlutterDeckBackground.solid(Color(0xFF0a0a0a)),
+          light: FlutterDeckBackground.solid(Color(0xFF0a0a0a)),
+        ),
+        controls: FlutterDeckControlsConfiguration(
+          presenterToolbarVisible: true,
+        ),
+        navigation: FlutterDeckNavigationConfiguration(
+          enabled: true,
+        ),
+        transition: FlutterDeckTransition.fade(),
+      ),
     );
   }
 
