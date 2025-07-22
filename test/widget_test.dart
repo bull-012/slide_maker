@@ -12,7 +12,7 @@ import 'package:slide_maker/main.dart';
 void main() {
   testWidgets('Presentation selector loads', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const SlideApp());
+    await tester.pumpWidget(const SlideMakerApp());
 
     // Verify that the presentation selector is loaded
     expect(find.text('🎤 発表資料を選択してください'), findsOneWidget);

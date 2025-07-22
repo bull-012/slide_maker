@@ -133,9 +133,6 @@ class SlideApp {
         controls: FlutterDeckControlsConfiguration(
           presenterToolbarVisible: true,
         ),
-        navigation: FlutterDeckNavigationConfiguration(
-          enabled: true,
-        ),
         transition: FlutterDeckTransition.fade(),
       ),
     );
