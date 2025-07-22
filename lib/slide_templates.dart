@@ -15,10 +15,10 @@ class ResponsiveHelper {
     final size = MediaQuery.of(context).size;
     final shortestSide = size.shortestSide;
     
-    if (shortestSide < 600) return 0.7;  // Mobile
-    if (shortestSide < 900) return 0.85; // Tablet
-    if (shortestSide < 1200) return 1.0; // Desktop Small
-    return 1.2; // Desktop Large
+    if (shortestSide < 600) return 1.0;  // Mobile
+    if (shortestSide < 900) return 1.2; // Tablet
+    if (shortestSide < 1200) return 1.4; // Desktop Small
+    return 1.6; // Desktop Large
   }
 
   static double getFontSize(BuildContext context, double baseFontSize) {
@@ -30,7 +30,7 @@ class ResponsiveHelper {
   }
 }
 
-/// 改善されたタイトルスライドテンプレート
+/// SpeakerDeckスタイルのタイトルスライドテンプレート
 class TitleSlideTemplate extends SlideTemplate {
   final String title;
   final String? subtitle;
@@ -61,94 +61,124 @@ class TitleSlideTemplate extends SlideTemplate {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF1e3c72),
-                Color(0xFF2a5298),
-                Color(0xFF4f79a4),
+                Color(0xFF0a0a0a),
+                Color(0xFF1a1a1a),
+                Color(0xFF0f0f0f),
               ],
             ),
           ),
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 40)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // メインタイトル
-                  Container(
-                    padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 20)),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.2),
-                        width: 1,
-                      ),
-                    ),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: ResponsiveHelper.getFontSize(context, 56),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        height: 1.2,
-                      ),
-                      textAlign: TextAlign.center,
+          child: Stack(
+            children: [
+              // 背景のアクセント
+              Positioned(
+                top: -100,
+                right: -100,
+                child: Container(
+                  width: 300,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        Colors.white.withValues(alpha: 0.03),
+                        Colors.transparent,
+                      ],
                     ),
                   ),
-                  
-                  // 副題
-                  if (subtitle != null) ...[
-                    SizedBox(height: ResponsiveHelper.getSpacing(context, 40)),
-                    Text(
-                      subtitle!,
-                      style: TextStyle(
-                        fontSize: ResponsiveHelper.getFontSize(context, 28),
-                        color: Colors.white.withValues(alpha: 0.9),
-                        height: 1.3,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                  
-                  // 作者と日付
-                  if (author != null || date != null) ...[
-                    SizedBox(height: ResponsiveHelper.getSpacing(context, 60)),
-                    Container(
-                      padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 16)),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.05),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        children: [
-                          if (author != null)
-                            Text(
-                              author!,
-                              style: TextStyle(
-                                fontSize: ResponsiveHelper.getFontSize(context, 22),
-                                color: Colors.white.withValues(alpha: 0.8),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (author != null && date != null)
-                            SizedBox(height: ResponsiveHelper.getSpacing(context, 8)),
-                          if (date != null)
-                            Text(
-                              date!,
-                              style: TextStyle(
-                                fontSize: ResponsiveHelper.getFontSize(context, 18),
-                                color: Colors.white.withValues(alpha: 0.7),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ],
+                ),
               ),
-            ),
+              // メインコンテンツ
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 60)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // メインタイトル
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: ResponsiveHelper.getFontSize(context, 64),
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          height: 1.1,
+                          letterSpacing: -1.0,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      
+                      // タイトル下線
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: ResponsiveHelper.getSpacing(context, 24),
+                        ),
+                        height: 4,
+                        width: ResponsiveHelper.getSpacing(context, 80),
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.white, Colors.grey],
+                          ),
+                        ),
+                      ),
+                      
+                      // 副題
+                      if (subtitle != null) ...[
+                        SizedBox(height: ResponsiveHelper.getSpacing(context, 48)),
+                        Text(
+                          subtitle!,
+                          style: TextStyle(
+                            fontSize: ResponsiveHelper.getFontSize(context, 32),
+                            fontWeight: FontWeight.w300,
+                            color: Colors.grey.shade300,
+                            height: 1.3,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                      
+                      // 作者と日付
+                      if (author != null || date != null) ...[
+                        SizedBox(height: ResponsiveHelper.getSpacing(context, 80)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (author != null)
+                              Text(
+                                author!,
+                                style: TextStyle(
+                                  fontSize: ResponsiveHelper.getFontSize(context, 22),
+                                  color: Colors.grey.shade400,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            if (author != null && date != null)
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveHelper.getSpacing(context, 20),
+                                ),
+                                child: Container(
+                                  width: 2,
+                                  height: 20,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                            if (date != null)
+                              Text(
+                                date!,
+                                style: TextStyle(
+                                  fontSize: ResponsiveHelper.getFontSize(context, 20),
+                                  color: Colors.grey.shade500,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -156,7 +186,7 @@ class TitleSlideTemplate extends SlideTemplate {
   }
 }
 
-/// 改善された箇条書きスライドテンプレート
+/// SpeakerDeckスタイルの箇条書きスライドテンプレート
 class BulletSlideTemplate extends SlideTemplate {
   final String title;
   final List<String> bullets;
@@ -185,11 +215,12 @@ class BulletSlideTemplate extends SlideTemplate {
         return Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               colors: [
-                Color(0xFFf7f0fd),
-                Color(0xFFe6f3ff),
+                Color(0xFF0a0a0a),
+                Color(0xFF1a1a1a),
+                Color(0xFF0f0f0f),
               ],
             ),
           ),
@@ -199,80 +230,55 @@ class BulletSlideTemplate extends SlideTemplate {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // タイトル
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 20)),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF6366f1),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: titleFontSize != null 
-                        ? ResponsiveHelper.getFontSize(context, titleFontSize!)
-                        : ResponsiveHelper.getFontSize(context, 40),
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: titleFontSize != null 
+                      ? ResponsiveHelper.getFontSize(context, titleFontSize!)
+                      : ResponsiveHelper.getFontSize(context, 44),
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: -0.5,
                   ),
                 ),
                 
-                SizedBox(height: ResponsiveHelper.getSpacing(context, 40)),
+                // タイトル下線
+                Container(
+                  margin: EdgeInsets.only(
+                    top: ResponsiveHelper.getSpacing(context, 16),
+                    bottom: ResponsiveHelper.getSpacing(context, 48),
+                  ),
+                  height: 2,
+                  width: ResponsiveHelper.getSpacing(context, 60),
+                  color: Colors.white,
+                ),
                 
                 // 箇条書き
                 Expanded(
                   child: ListView.builder(
                     itemCount: bullets.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(
-                          bottom: ResponsiveHelper.getSpacing(context, 20),
-                        ),
-                        padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 20)),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: ResponsiveHelper.getSpacing(context, 32),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // バレットポイント
                             Container(
-                              width: ResponsiveHelper.getSpacing(context, 24),
-                              height: ResponsiveHelper.getSpacing(context, 24),
+                              width: ResponsiveHelper.getSpacing(context, 8),
+                              height: ResponsiveHelper.getSpacing(context, 8),
                               margin: EdgeInsets.only(
-                                top: ResponsiveHelper.getSpacing(context, 4),
-                                right: ResponsiveHelper.getSpacing(context, 16),
+                                top: ResponsiveHelper.getSpacing(context, 12),
+                                right: ResponsiveHelper.getSpacing(context, 24),
                               ),
                               decoration: const BoxDecoration(
-                                color: Color(0xFF6366f1),
+                                color: Colors.white,
                                 shape: BoxShape.circle,
                               ),
-                              child: Center(
-                                child: Text(
-                                  '${index + 1}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: ResponsiveHelper.getFontSize(context, 14),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
                             ),
+                            // テキスト
                             Expanded(
                               child: Text(
                                 bullets[index].startsWith('•') 
@@ -281,9 +287,10 @@ class BulletSlideTemplate extends SlideTemplate {
                                 style: TextStyle(
                                   fontSize: bulletFontSize != null
                                     ? ResponsiveHelper.getFontSize(context, bulletFontSize!)
-                                    : ResponsiveHelper.getFontSize(context, 24),
-                                  color: const Color(0xFF374151),
+                                    : ResponsiveHelper.getFontSize(context, 30),
+                                  color: Colors.grey.shade200,
                                   height: 1.4,
+                                  fontWeight: FontWeight.w300,
                                 ),
                               ),
                             ),
@@ -302,7 +309,7 @@ class BulletSlideTemplate extends SlideTemplate {
   }
 }
 
-/// 改善された番号付きリストスライドテンプレート
+/// SpeakerDeckスタイルの番号付きリストスライドテンプレート
 class NumberedListSlideTemplate extends SlideTemplate {
   final String title;
   final List<String> items;
@@ -334,9 +341,9 @@ class NumberedListSlideTemplate extends SlideTemplate {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF0f172a),
-                Color(0xFF1e293b),
-                Color(0xFF334155),
+                Color(0xFF0a0a0a),
+                Color(0xFF1a1a1a),
+                Color(0xFF0f0f0f),
               ],
             ),
           ),
@@ -351,10 +358,22 @@ class NumberedListSlideTemplate extends SlideTemplate {
                   style: TextStyle(
                     fontSize: titleFontSize != null
                       ? ResponsiveHelper.getFontSize(context, titleFontSize!)
-                      : ResponsiveHelper.getFontSize(context, 40),
-                    fontWeight: FontWeight.bold,
+                      : ResponsiveHelper.getFontSize(context, 44),
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
+                    letterSpacing: -0.5,
                   ),
+                ),
+                
+                // タイトル下線
+                Container(
+                  margin: EdgeInsets.only(
+                    top: ResponsiveHelper.getSpacing(context, 16),
+                    bottom: ResponsiveHelper.getSpacing(context, 48),
+                  ),
+                  height: 2,
+                  width: ResponsiveHelper.getSpacing(context, 60),
+                  color: Colors.white,
                 ),
                 
                 SizedBox(height: ResponsiveHelper.getSpacing(context, 40)),
@@ -370,10 +389,10 @@ class NumberedListSlideTemplate extends SlideTemplate {
                         ),
                         padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 24)),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.white.withValues(alpha: 0.05),
+                          borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.2),
+                            color: Colors.white.withValues(alpha: 0.1),
                             width: 1,
                           ),
                         ),
@@ -381,24 +400,22 @@ class NumberedListSlideTemplate extends SlideTemplate {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              width: ResponsiveHelper.getSpacing(context, 40),
-                              height: ResponsiveHelper.getSpacing(context, 40),
+                              width: ResponsiveHelper.getSpacing(context, 36),
+                              height: ResponsiveHelper.getSpacing(context, 36),
                               margin: EdgeInsets.only(
                                 right: ResponsiveHelper.getSpacing(context, 20),
                               ),
                               decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [Color(0xFF06b6d4), Color(0xFF0891b2)],
-                                ),
-                                borderRadius: BorderRadius.circular(12),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               child: Center(
                                 child: Text(
                                   '${index + 1}',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: ResponsiveHelper.getFontSize(context, 18),
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
@@ -409,9 +426,10 @@ class NumberedListSlideTemplate extends SlideTemplate {
                                 style: TextStyle(
                                   fontSize: itemFontSize != null
                                     ? ResponsiveHelper.getFontSize(context, itemFontSize!)
-                                    : ResponsiveHelper.getFontSize(context, 28),
-                                  color: Colors.white.withValues(alpha: 0.95),
-                                  height: 1.3,
+                                    : ResponsiveHelper.getFontSize(context, 22),
+                                  color: Colors.grey.shade200,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.w300,
                                 ),
                               ),
                             ),
@@ -430,7 +448,7 @@ class NumberedListSlideTemplate extends SlideTemplate {
   }
 }
 
-/// 改善されたコンテンツスライドテンプレート
+/// SpeakerDeckスタイルのコンテンツスライドテンプレート
 class ContentSlideTemplate extends SlideTemplate {
   final String title;
   final String content;
@@ -463,12 +481,12 @@ class ContentSlideTemplate extends SlideTemplate {
         return Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               colors: [
-                Color(0xFFfef3c7),
-                Color(0xFFfde68a),
-                Color(0xFFf59e0b),
+                Color(0xFF0a0a0a),
+                Color(0xFF1a1a1a),
+                Color(0xFF0f0f0f),
               ],
             ),
           ),
@@ -478,51 +496,41 @@ class ContentSlideTemplate extends SlideTemplate {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // タイトル
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: titleFontSize != null
+                      ? ResponsiveHelper.getFontSize(context, titleFontSize!)
+                      : ResponsiveHelper.getFontSize(context, 44),
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                
+                // タイトル下線
                 Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 24)),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF92400e),
-                    borderRadius: BorderRadius.circular(16),
+                  margin: EdgeInsets.only(
+                    top: ResponsiveHelper.getSpacing(context, 16),
+                    bottom: ResponsiveHelper.getSpacing(context, 48),
                   ),
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: titleFontSize != null
-                        ? ResponsiveHelper.getFontSize(context, titleFontSize!)
-                        : ResponsiveHelper.getFontSize(context, 40),
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  height: 2,
+                  width: ResponsiveHelper.getSpacing(context, 60),
+                  color: Colors.white,
                 ),
                 
                 SizedBox(height: ResponsiveHelper.getSpacing(context, 40)),
                 
                 // メインコンテンツ
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 30)),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.9),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Text(
-                    content,
-                    style: TextStyle(
-                      fontSize: contentFontSize != null
-                        ? ResponsiveHelper.getFontSize(context, contentFontSize!)
-                        : ResponsiveHelper.getFontSize(context, 26),
-                      color: const Color(0xFF374151),
-                      height: 1.5,
-                    ),
+                Text(
+                  content,
+                  style: TextStyle(
+                    fontSize: contentFontSize != null
+                      ? ResponsiveHelper.getFontSize(context, contentFontSize!)
+                      : ResponsiveHelper.getFontSize(context, 26),
+                    color: Colors.grey.shade200,
+                    height: 1.5,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
                 
@@ -535,13 +543,9 @@ class ContentSlideTemplate extends SlideTemplate {
                       itemBuilder: (context, index) {
                         return Container(
                           margin: EdgeInsets.only(
-                            bottom: ResponsiveHelper.getSpacing(context, 16),
+                            bottom: ResponsiveHelper.getSpacing(context, 24),
                           ),
-                          padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 20)),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.8),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 0)),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -549,11 +553,11 @@ class ContentSlideTemplate extends SlideTemplate {
                                 width: ResponsiveHelper.getSpacing(context, 8),
                                 height: ResponsiveHelper.getSpacing(context, 8),
                                 margin: EdgeInsets.only(
-                                  top: ResponsiveHelper.getSpacing(context, 8),
-                                  right: ResponsiveHelper.getSpacing(context, 16),
+                                  top: ResponsiveHelper.getSpacing(context, 12),
+                                  right: ResponsiveHelper.getSpacing(context, 20),
                                 ),
                                 decoration: const BoxDecoration(
-                                  color: Color(0xFF92400e),
+                                  color: Colors.white,
                                   shape: BoxShape.circle,
                                 ),
                               ),
@@ -565,9 +569,10 @@ class ContentSlideTemplate extends SlideTemplate {
                                   style: TextStyle(
                                     fontSize: bulletFontSize != null
                                       ? ResponsiveHelper.getFontSize(context, bulletFontSize!)
-                                      : ResponsiveHelper.getFontSize(context, 22),
-                                    color: const Color(0xFF374151),
+                                      : ResponsiveHelper.getFontSize(context, 24),
+                                    color: Colors.grey.shade300,
                                     height: 1.4,
+                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                               ),
@@ -587,7 +592,7 @@ class ContentSlideTemplate extends SlideTemplate {
   }
 }
 
-/// 改善されたセンタリング表示スライドテンプレート
+/// SpeakerDeckスタイルのセンタリング表示スライドテンプレート
 class CenterSlideTemplate extends SlideTemplate {
   final String title;
   final String? subtitle;
@@ -619,13 +624,13 @@ class CenterSlideTemplate extends SlideTemplate {
       builder: (context) {
         return Container(
           decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.center,
-              radius: 1.0,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               colors: [
-                Color(0xFF667eea),
-                Color(0xFF764ba2),
-                Color(0xFF6B73FF),
+                Color(0xFF0a0a0a),
+                Color(0xFF1a1a1a),
+                Color(0xFF0f0f0f),
               ],
             ),
           ),
@@ -636,79 +641,51 @@ class CenterSlideTemplate extends SlideTemplate {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // メインタイトル
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveHelper.getSpacing(context, 40),
-                      vertical: ResponsiveHelper.getSpacing(context, 30),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: titleFontSize != null
+                        ? ResponsiveHelper.getFontSize(context, titleFontSize!)
+                        : ResponsiveHelper.getFontSize(context, 56),
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      height: 1.1,
+                      letterSpacing: -1.0,
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.3),
-                        width: 2,
-                      ),
-                    ),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: titleFontSize != null
-                          ? ResponsiveHelper.getFontSize(context, titleFontSize!)
-                          : ResponsiveHelper.getFontSize(context, 48),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        height: 1.2,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+                    textAlign: TextAlign.center,
                   ),
                   
                   // 副題
                   if (subtitle != null) ...[
                     SizedBox(height: ResponsiveHelper.getSpacing(context, 50)),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: ResponsiveHelper.getSpacing(context, 30),
-                        vertical: ResponsiveHelper.getSpacing(context, 20),
+                    Text(
+                      subtitle!,
+                      style: TextStyle(
+                        fontSize: subtitleFontSize != null
+                          ? ResponsiveHelper.getFontSize(context, subtitleFontSize!)
+                          : ResponsiveHelper.getFontSize(context, 30),
+                        color: Colors.grey.shade300,
+                        height: 1.3,
+                        fontWeight: FontWeight.w300,
                       ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Text(
-                        subtitle!,
-                        style: TextStyle(
-                          fontSize: subtitleFontSize != null
-                            ? ResponsiveHelper.getFontSize(context, subtitleFontSize!)
-                            : ResponsiveHelper.getFontSize(context, 32),
-                          color: Colors.white.withValues(alpha: 0.95),
-                          height: 1.3,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                   
                   // 説明
                   if (description != null) ...[
                     SizedBox(height: ResponsiveHelper.getSpacing(context, 40)),
-                    Container(
-                      padding: EdgeInsets.all(ResponsiveHelper.getSpacing(context, 24)),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(16),
+                    Text(
+                      description!,
+                      style: TextStyle(
+                        fontSize: descriptionFontSize != null
+                          ? ResponsiveHelper.getFontSize(context, descriptionFontSize!)
+                          : ResponsiveHelper.getFontSize(context, 22),
+                        color: Colors.grey.shade400,
+                        height: 1.4,
+                        fontWeight: FontWeight.w300,
                       ),
-                      child: Text(
-                        description!,
-                        style: TextStyle(
-                          fontSize: descriptionFontSize != null
-                            ? ResponsiveHelper.getFontSize(context, descriptionFontSize!)
-                            : ResponsiveHelper.getFontSize(context, 24),
-                          color: Colors.white.withValues(alpha: 0.9),
-                          height: 1.4,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ],
