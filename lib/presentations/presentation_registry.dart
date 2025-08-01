@@ -1,6 +1,7 @@
 import '../slide_config.dart';
 import 'default_slide_config.dart';
 import 'figma_ai_presentation_config.dart';
+import 'ai_flow_optimization_config.dart';
 
 /// 発表資料レジストリ - すべての発表資料を管理
 class PresentationRegistry {
@@ -23,6 +24,12 @@ class PresentationRegistry {
       title: 'Figma×Flutter連携ガイド',
       description: 'デザインがそのままアプリになる実用的な手法',
       config: FigmaAIPresentationConfig.presentation,
+    ),
+    PresentationItem(
+      id: 'ai-flow-optimization',
+      title: 'AIで開発フロー最適化',
+      description: '自動化で仕事をゼロに - 楽しながら前進する開発',
+      config: AIFlowOptimizationConfig.presentation,
     ),
   ];
 

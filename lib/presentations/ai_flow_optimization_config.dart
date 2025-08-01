@@ -5,7 +5,7 @@ class AIFlowOptimizationConfig {
   static const SlideConfig presentation = SlideConfig(
     title: 'AIで開発フロー最適化',
     subtitle: '自動化で仕事をゼロに - 楽しながら前進する開発',
-    author: '開発効率化推進チーム',
+    author: 'ぶる',
     date: '2025年8月1日',
     slides: [
       // タイトルスライド
@@ -21,183 +21,167 @@ class AIFlowOptimizationConfig {
         },
       ),
 
-      // パラダイムシフト
+      // 核心メッセージ
       SlideData(
-        route: '/paradigm-shift',
-        title: 'パラダイムシフト',
-        type: SlideType.content,
-        content: {
-          'title': 'AIの使い方が変わってきた',
-          'content': 'コード生成から開発フロー全体の最適化へ',
-          'bulletPoints': [
-            '以前：「AIでコード生成！効率化！」',
-            '現在：「AIで開発フロー全体を自動化・最適化」',
-            '開発自体より、開発を取り巻く作業の効率化にこそ価値がある',
-            '「楽をするための努力」という逆説的な面白さ',
-          ],
-        },
-      ),
-
-      // 現状の無駄
-      SlideData(
-        route: '/current-waste',
-        title: '現状の無駄',
-        type: SlideType.content,
-        content: {
-          'title': '日々の開発で感じる無駄',
-          'content': '見えないコストの蓄積',
-          'bulletPoints': [
-            'CI/CDでlint忘れ → 再コミット・再実行の無駄',
-            '1回数ドルのコスト × 回数 = 見えないコストの蓄積',
-            '気づくタイミングの遅れ = 全体的なスピード感の低下',
-            'コンテキストスイッチによる集中力の分散',
-          ],
-        },
-      ),
-
-      // 開発フローの自動化事例
-      SlideData(
-        route: '/automation-examples',
-        title: '自動化事例',
-        type: SlideType.content,
-        content: {
-          'title': '実際に自動化できること',
-          'content': '日々の作業を自動化で解決',
-          'bulletPoints': [
-            'lint忘れの自動修正フロー',
-            'PR作成時の自動チェック強化',
-            'デプロイ前の各種検証の自動化',
-            '「気づくタイミング」を前倒しする仕組み作り',
-          ],
-        },
-      ),
-
-      // 並行作業の最適化
-      SlideData(
-        route: '/parallel-optimization',
-        title: '並行作業の最適化',
-        type: SlideType.content,
-        content: {
-          'title': '効率的な並行作業の工夫',
-          'content': '負荷を分散して効率化',
-          'bulletPoints': [
-            'git worktreeは疲れる → 別リポジトリで同時開発',
-            '5分の待ち時間を活用した思考の深化',
-            'コンテキストスイッチを減らす工夫',
-            '１つあたりの思考の深さを深くして質を上げる',
-          ],
-        },
-      ),
-
-      // 日常業務の自動化
-      SlideData(
-        route: '/daily-automation',
-        title: '日常業務の自動化',
-        type: SlideType.content,
-        content: {
-          'title': '身近な自動化の例',
-          'content': '遊び心から生まれる実用的なツール',
-          'bulletPoints': [
-            'ブラック検知の自動化',
-            'freee勤怠の自動化（青野さんの例）',
-            '定型作業の自然言語による自動化',
-            '社内ツールは「まず動く」を優先、徐々に改善',
-          ],
-        },
-      ),
-
-      // Figma Dev Mode MCP
-      SlideData(
-        route: '/figma-mcp',
-        title: 'Figma Dev Mode MCP',
-        type: SlideType.content,
-        content: {
-          'title': 'Figmaからコードへの挑戦',
-          'content': 'UIは取得できるが、まだ課題あり',
-          'bulletPoints': [
-            'UIの取得・再現は可能に',
-            'コード品質の制御が課題',
-            'インタラクション・状態管理の難しさ',
-            'Role-based AI Architectureの検討',
-          ],
-        },
-      ),
-
-      // 解決アプローチ
-      SlideData(
-        route: '/solution-approach',
-        title: '解決アプローチ',
-        type: SlideType.numberedList,
-        content: {
-          'title': 'Figma → コードの課題解決',
-          'items': [
-            'View専門家AIとLogic専門家AIの分離',
-            '両者のdebateによる最適解の導出',
-            'コンテキスト設計の工夫',
-            '段階的な自動化（完全自動化を目指さない）',
-          ],
-        },
-      ),
-
-      // 社内ナレッジの共有
-      SlideData(
-        route: '/knowledge-sharing',
-        title: '社内ナレッジ共有',
-        type: SlideType.content,
-        content: {
-          'title': '隠れた自動化ツールの共有',
-          'content': '遊び心から生まれる実用ツール',
-          'bulletPoints': [
-            '社内で密かに作られている便利ツールたち',
-            '車輪の再発明を防ぐ',
-            'データベース化して共有文化を作る',
-            '「楽をするための努力」を組織の力に',
-          ],
-        },
-      ),
-
-      // キーメッセージ
-      SlideData(
-        route: '/key-message',
-        title: 'キーメッセージ',
+        route: '/core-message',
+        title: '核心メッセージ',
         type: SlideType.center,
         content: {
-          'title': 'AIの真価は',
-          'subtitle': 'コードを書くことではなく',
-          'description': '開発者が本来やるべきことに集中できる環境を作ること',
+          'title': 'AIの真価は開発フローの最適化',
+          'subtitle': 'コード生成ではなく、開発者の時間を生み出すこと',
+          'description': '本来やるべきことに集中できる環境づくり',
         },
       ),
 
-      // 実践的なTips
+      // 3つの要点
       SlideData(
-        route: '/practical-tips',
-        title: '実践的なTips',
-        type: SlideType.bullet,
+        route: '/three-points',
+        title: '3つの要点',
+        type: SlideType.numberedList,
         content: {
-          'title': '今すぐ始められる自動化',
-          'bullets': [
-            'CI/CDパイプラインの見直し',
-            'pre-commitフックの活用',
-            '定型作業のスクリプト化',
-            'AIツールを開発フローに組み込む',
-            '失敗を恐れず、まず試してみる',
+          'title': '今日お伝えしたい3つのこと',
+          'items': [
+            '開発フローの無駄を自動化で解決する',
+            '音駆動開発でコンテキストスイッチを最小化',
+            '社内ツールは「動けばOK」の精神で素早く作る',
           ],
         },
       ),
 
-      // 投資対効果
+      // 要点1: 開発フローの無駄
       SlideData(
-        route: '/roi',
-        title: '投資対効果',
+        route: '/point1-waste',
+        title: '要点1: 開発フローの無駄',
+        type: SlideType.center,
+        content: {
+          'title': '見えないコストが蓄積している',
+          'subtitle': '1日30分の無駄',
+          'description': 'CI/CD待ち、画面切り替え、定型作業の繰り返し',
+        },
+      ),
+
+      // 具体例: 無駄の例
+      SlideData(
+        route: '/waste-examples',
+        title: '具体例: よくある無駄',
+        type: SlideType.bullet,
+        content: {
+          'title': '日々遭遇する時間の無駄',
+          'bullets': [
+            'lint忘れで再コミット・CI再実行（5分×3回/日）',
+            'GitHub Actions の結果を音で通知（20分/日→即座に把握）',
+            'freee勤怠の手動入力（5分/日）',
+            'ブラック検知の手動確認（10分/週）',
+          ],
+        },
+      ),
+
+      // 要点2: コンテキストスイッチの最小化
+      SlideData(
+        route: '/point2-context',
+        title: '要点2: コンテキストスイッチの最小化',
+        type: SlideType.center,
+        content: {
+          'title': '集中力の分断を防ぐ',
+          'subtitle': '作業を中断せずに状態を把握',
+          'description': '画面切り替えによる生産性低下を解決',
+        },
+      ),
+
+      // 具体例: コンテキストスイッチを減らす方法
+      SlideData(
+        route: '/context-examples',
+        title: '具体例: コンテキストスイッチを減らす方法',
+        type: SlideType.bullet,
+        content: {
+          'title': '実際に使えるテクニック',
+          'bullets': [
+            '音駆動開発：マリオBGM＋GitHub Actions Watch＋AquaVoice',
+            '別リポジトリで並行開発：git worktreeより疲れない',
+            'AIの思考を深くする：カスタムコマンドで深い分析',
+            '1つの作業の思考を深くする：質の向上',
+          ],
+        },
+      ),
+
+      // 要点3: 社内ツールの哲学
+      SlideData(
+        route: '/point3-tools',
+        title: '要点3: 社内ツールの哲学',
+        type: SlideType.center,
+        content: {
+          'title': '社内ツールは「動けばOK」',
+          'subtitle': 'プロダクションと社内ツールの品質基準を分ける',
+          'description': '完璧を求めず、まずは時間削減を実現',
+        },
+      ),
+
+      // 具体例: 自動化ツール
+      SlideData(
+        route: '/tool-examples',
+        title: '具体例: 実際の自動化ツール',
+        type: SlideType.bullet,
+        content: {
+          'title': '遊び心から生まれた実用ツール',
+          'bullets': [
+            'freee勤怠自動入力（青野さん作）',
+            'ブラック検知自動化(作成中)',
+            'PR作成時に必要なことを全部入れたコマンド',
+            'lint忘れ自動修正スクリプト',
+          ],
+        },
+      ),
+
+      // 音駆動開発の詳細
+      SlideData(
+        route: '/sound-driven-detail',
+        title: '音駆動開発の詳細',
         type: SlideType.content,
         content: {
-          'title': '自動化の投資対効果',
-          'content': '小さな積み重ねが大きな差に',
+          'title': '個人的に音駆動開発にハマってます',
+          'content': 'マリオの音楽で開発フローを音楽化',
           'bulletPoints': [
-            '1回5分の作業 × 1日10回 = 50分/日',
-            '50分/日 × 20日 = 1000分/月 ≈ 17時間/月',
-            '17時間 = 2営業日分の時間創出',
-            'その時間で新しい価値創造へ',
+            '処理開始：マリオのテーマ曲が流れて集中モード突入',
+            '確認タイミング：ジャンプ音で「レビューお願いします」',
+            '処理完了：ゴール音で達成感と次のタスクへ',
+            '並行処理：BGMリセットで新しいコンテキスト開始',
+            'GitHub CI完了：成功音/失敗音で結果を即座に把握',
+          ],
+        },
+      ),
+
+      // AIの思考を深くする
+      SlideData(
+        route: '/ai-deep-thinking',
+        title: 'AIの思考を深くする',
+        type: SlideType.content,
+        content: {
+          'title': 'AI疲れ・対話疲れをなくす方法',
+          'content': 'カスタムコマンドで1回の指示で深い分析を実現',
+          'bulletPoints': [
+            '何度も質問する必要がない → 対話疲れを解消',
+            '1回の指示で深い分析 → AIとの往復を最小化',
+            'sequential-thinking：段階的に複雑な問題を解決',
+            'ultrathink：構造化された分析で重要な決定',
+            '待ち時間を有効活用 → 他の作業に集中できる',
+          ],
+        },
+      ),
+
+      // その他の自動化ツール
+      SlideData(
+        route: '/other-tools',
+        title: 'その他の自動化ツール',
+        type: SlideType.content,
+        content: {
+          'title': 'まだまだある自動化の可能性',
+          'content': '実験中・アイデア段階のツール',
+          'bulletPoints': [
+            'AquaVoice（\$10で実験中）：音声入力でハンズフリー開発',
+            'Figma Dev Mode MCP：UIの取得・再現が可能に',
+            'Role-based AI Architecture：専門家AIの議論で最適解',
+            'ブラウザ操作の自動化：定型作業をスクリプト化',
+            '社内で眠っている便利ツールたち',
           ],
         },
       ),
@@ -208,13 +192,11 @@ class AIFlowOptimizationConfig {
         title: 'アクションプラン',
         type: SlideType.numberedList,
         content: {
-          'title': '明日から始める第一歩',
+          'title': '明日から始める3つのステップ',
           'items': [
-            '現在の開発フローの無駄を洗い出す',
-            '最も頻繁に行う作業から自動化',
-            '社内の自動化事例を収集・共有',
-            'AIツールの開発フロー統合を試す',
-            '成果を測定し、改善サイクルを回す',
+            '最も頻繁な作業を1つ選んで自動化',
+            '音通知を作ってみる（Claude Code使う人向け）',
+            '社内の自動化ツールを探して使ってみる',
           ],
         },
       ),
@@ -226,8 +208,8 @@ class AIFlowOptimizationConfig {
         type: SlideType.center,
         content: {
           'title': '楽をするための努力が',
-          'subtitle': 'チーム全体の生産性を上げる',
-          'description': '自動化で仕事をゼロに、そして新しい価値創造へ',
+          'subtitle': '組織全体の生産性を上げる',
+          'description': '自動化で時間を作り、本来の価値創造へ',
         },
       ),
 
@@ -239,7 +221,7 @@ class AIFlowOptimizationConfig {
         content: {
           'title': 'ありがとうございました',
           'subtitle': '質疑応答',
-          'description': 'ご質問・実践事例の共有をお待ちしています',
+          'description': 'ご質問・実践事例、アイデアの共有をお待ちしています',
         },
       ),
     ],
